@@ -1,0 +1,16 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean package'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: 'target/*.jar'
+    artifactName: 'drop'
